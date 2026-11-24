@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="theme.css">
+<style>
+  #frame { width: 1280px; padding: 44px 48px 48px; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { margin-top: 6px; color: var(--muted); font-size: 15px; }
+  .grid { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .tile { border-radius: 22px; overflow: hidden; background: var(--card); box-shadow: var(--shadow); }
+  .img { position: relative; height: 250px; background: #0d1322; overflow: hidden; }
+  .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img.contain img { object-fit: contain; }
+  .checker { background-color: #e9ecf2; background-image: linear-gradient(45deg, #d5dae4 25%, transparent 25%), linear-gradient(-45deg, #d5dae4 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #d5dae4 75%), linear-gradient(-45deg, transparent 75%, #d5dae4 75%); background-size: 22px 22px; background-position: 0 0, 0 11px, 11px -11px, -11px 0; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; height: 100%; }
+  .split div { position: relative; overflow: hidden; }
+  .split span { position: absolute; left: 10px; top: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 999px; background: rgba(10, 15, 28, 0.66); color: #fff; backdrop-filter: blur(6px); }
+  .play { position: absolute; inset: 0; display: grid; place-items: center; }
+  .play i { width: 58px; height: 58px; border-radius: 50%; background: rgba(10, 15, 28, 0.55); backdrop-filter: blur(8px); display: grid; place-items: center; box-shadow: 0 10px 30px -10px rgba(0,0,0,.6); }
+  .play i::after { content: ""; margin-left: 4px; border: 11px solid transparent; border-left: 17px solid #fff; border-right: 0; }
+  .meta { padding: 14px 16px 16px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; padding: 4px 10px 4px 7px; border-radius: 999px; }
+  .chip.gem { background: rgba(139,124,246,0.16); color: #d6d1ff; }
+  .chip.cdx { background: rgba(54,201,160,0.16); color: #a8f2dd; }
+  .meta p { margin-top: 9px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .meta code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #c9d2e6; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div class="glow" style="width:520px;height:380px;left:-180px;top:-220px;background:#3b5bd6;opacity:.38"></div>
+  <div class="glow" style="width:520px;height:380px;right:-180px;bottom:-240px;background:#1aa585;opacity:.32"></div>
+  <h2>Real outputs, made through these servers</h2>
+  <p class="sub">Unedited results from the test runs. Prompts are shortened.</p>
+  <div class="grid">
+    <div class="tile"><div class="img"><img src="media/crane.jpg"></div>
+      <div class="meta"><span class="chip gem"><span data-mark="gemini" data-size="15"></span>gemini_image · Nano Banana</span><p>"A single origami crane made of teal paper on a white marble table, soft overhead light." <code>1:1 · 42 s</code></p></div></div>
+    <div class="tile"><div class="img"><div class="split"><div><img src="media/earbuds.jpg" style="width:200%;height:100%;object-fit:cover"><span>BEFORE</span></div><div><img src="media/earbuds-edit.jpg" style="width:200%;height:100%;object-fit:cover;margin-left:-100%"><span>EDIT</span></div></div></div>
+      <div class="meta"><span class="chip gem"><span data-mark="gemini" data-size="15"></span>gemini_image · edit with a reference</span><p>"Same case and composition, on black volcanic sand at dusk." The case stays, the world changes.</p></div></div>
+    <div class="tile"><div class="img"><img src="media/apple.jpg"></div>
+      <div class="meta"><span class="chip gem"><span data-mark="gemini" data-size="15"></span>gemini_chat · media kept</span><p>A plain chat message that Gemini answered with an image. The server saved it to the project too.</p></div></div>
+    <div class="tile"><div class="img contain checker"><img src="media/sneaker.png"></div>
+      <div class="meta"><span class="chip cdx"><span data-mark="codex" data-size="15"></span>generate_image · transparent PNG</span><p>"A glossy ceramic sneaker sculpture, studio product shot", with a real alpha channel. <code>31 s</code></p></div></div>
+    <div class="tile"><div class="img"><img src="media/camera-3d.jpg"></div>
+      <div class="meta"><span class="chip cdx"><span data-mark="codex" data-size="15"></span>generate_3d · Blender → GLB</span><p>"A stylised low-poly vintage film camera." Modelled, textured, exported and re-imported to check. <code>7,430 tris</code></p></div></div>
+    <div class="tile"><div class="img"><img src="media/forest-video.jpg"><div class="play"><i></i></div></div>
+      <div class="meta"><span class="chip cdx"><span data-mark="codex" data-size="15"></span>generate_video · ffmpeg</span><p>"Slow push-in on a misty pine forest at sunrise." A 6 s 1080p loop built from a generated plate with parallax.</p></div></div>
+  </div>
+</div>
+<script src="marks.js"></script>
+</body>
+</html>

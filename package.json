@@ -1,0 +1,36 @@
+{
+  "name": "codex-gemini-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Use OpenAI Codex and Google Gemini from Claude (or any MCP client): image, Veo video, music and 3D generation plus second opinions, through the subscriptions you already have. No API keys.",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/codex-mcp",
+    "packages/gemini-mcp",
+    "packages/vscode-panel"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/check.mjs && node --test packages/vscode-panel/test/router.test.js packages/vscode-panel/test/parser.test.js",
+    "gemini:signin": "node packages/gemini-mcp/scripts/signin.mjs",
+    "panel:package": "npm run package -w packages/vscode-panel",
+    "smoke:codex": "node packages/codex-mcp/test/smoke.mjs",
+    "smoke:gemini": "node packages/gemini-mcp/test/smoke.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "claude-code",
+    "codex",
+    "gemini",
+    "nano-banana",
+    "veo",
+    "blender",
+    "antigravity"
+  ]
+}

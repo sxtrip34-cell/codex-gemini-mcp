@@ -1,0 +1,43 @@
+name: Bug report
+description: Something doesn't work as described.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for the report. Please remove personal data (emails, file paths with your name, tokens) from logs before posting.
+  - type: dropdown
+    id: part
+    attributes:
+      label: Which part?
+      options: [codex-mcp, gemini-mcp, panel, installer, docs]
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Tool or feature
+      placeholder: e.g. gemini_image, generate_3d, panel routing
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: The call you made (tool + arguments) or the message you typed in the panel.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output or logs
+      description: Server stderr, the tool result, or the "Codex · Gemini" output channel.
+      render: text
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: OS, Node version, client (Claude Code / Antigravity / VS Code), Codex CLI version
+    validations:
+      required: true

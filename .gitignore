@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.vsix
+*.log
+.env*
+!.env.example
+*.pem
+*.key
+*.p8
+*.p12
+out/
+test-output/
+.DS_Store
+Thumbs.db

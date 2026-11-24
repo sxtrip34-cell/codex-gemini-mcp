@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="theme.css">
+<style>
+  #frame { width: 1280px; padding: 44px 48px 46px; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { margin-top: 6px; color: var(--muted); font-size: 15px; max-width: 980px; line-height: 1.5; }
+  .head, .row { display: grid; grid-template-columns: 1fr 40px 240px 40px 300px; align-items: center; gap: 0; }
+  .head { margin-top: 30px; margin-bottom: 8px; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+  .rows { display: grid; gap: 12px; }
+  .msg { justify-self: start; max-width: 100%; padding: 12px 16px; border-radius: 18px 18px 18px 6px; background: var(--card); box-shadow: var(--shadow); font-size: 15px; }
+  .msg small { display: block; margin-top: 3px; font-size: 11.5px; color: var(--faint); }
+  .arrow { justify-self: center; width: 22px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.35)); position: relative; }
+  .arrow::after { content: ""; position: absolute; right: -1px; top: -3px; border: 4px solid transparent; border-left-color: rgba(255,255,255,0.4); border-right: 0; }
+  .tag { justify-self: start; padding: 7px 14px; border-radius: 999px; font-size: 14px; font-weight: 600; background: rgba(139,124,246,0.16); color: #d6d1ff; }
+  .tag.cdx { background: rgba(54,201,160,0.16); color: #a8f2dd; }
+  .tag.chat { background: rgba(255,255,255,0.08); color: var(--text); }
+  .tag small { font-weight: 500; opacity: .75; }
+  .who { display: flex; align-items: center; gap: 12px; }
+  .who .n { font-weight: 600; font-size: 15px; }
+  .who .d { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .note { margin-top: 26px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .note div { padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,0.04); font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .note b { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div class="glow" style="width:560px;height:420px;left:-200px;top:-220px;background:#3b5bd6;opacity:.38"></div>
+  <div class="glow" style="width:560px;height:420px;right:-200px;bottom:-260px;background:#1aa585;opacity:.32"></div>
+  <h2>Just write. It works out what to make.</h2>
+  <p class="sub">You pick the provider, the model and the power. Every message is read for what it asks for: chat, image, video, music or 3D, plus aspect ratio, length and format. Whatever the chosen side can't make goes to the other one.</p>
+  <div class="head"><span>Your message</span><span></span><span>Understood as</span><span></span><span>Made by</span></div>
+  <div class="rows">
+    <div class="row"><div class="msg">How is authentication wired in this repo?<small>Codex selected</small></div><div class="arrow"></div><div class="tag chat">Chat</div><div class="arrow"></div>
+      <div class="who"><span data-mark="codex" data-size="26"></span><div><div class="n">Codex</div><div class="d">reads and edits your workspace</div></div></div></div>
+    <div class="row"><div class="msg">dikey bir story görseli yap: kahve fincanı, sabah ışığı<small>Gemini selected · Turkish</small></div><div class="arrow"></div><div class="tag">Image <small>· 9:16</small></div><div class="arrow"></div>
+      <div class="who"><span data-mark="gemini" data-size="26"></span><div><div class="n">Gemini · Nano Banana</div><div class="d">vertical, full size, saved to your project</div></div></div></div>
+    <div class="row"><div class="msg">make a 10-second vertical video of rain on a window<small>Gemini selected</small></div><div class="arrow"></div><div class="tag">Video <small>· 9:16 · 10 s</small></div><div class="arrow"></div>
+      <div class="who"><span data-mark="gemini" data-size="26"></span><div><div class="n">Gemini · Veo</div><div class="d">real text-to-video with sound</div></div></div></div>
+    <div class="row"><div class="msg">30 saniyelik sakin lo-fi müzik yap<small>Codex selected · Turkish</small></div><div class="arrow"></div><div class="tag">Music <small>· via Gemini</small></div><div class="arrow"></div>
+      <div class="who"><span data-mark="gemini" data-size="26"></span><div><div class="n">Gemini · Create music</div><div class="d">Codex can't make music, so Gemini does</div></div></div></div>
+    <div class="row"><div class="msg">a low-poly vintage camera as GLB<small>Gemini selected</small></div><div class="arrow"></div><div class="tag cdx">3D model <small>· via Codex</small></div><div class="arrow"></div>
+      <div class="who"><span data-mark="codex" data-size="26"></span><div><div class="n">Codex · Blender</div><div class="d">modelled, textured, exported, checked</div></div></div></div>
+  </div>
+  <div class="note">
+    <div><b>Instant for clear cases.</b> Keywords in Turkish, English, Russian and Georgian decide most messages without a model call.</div>
+    <div><b>A quick look for the rest.</b> Ambiguous messages ("slow drone shot over misty mountains") are classified by Gemini Flash.</div>
+    <div><b>Media in chat is kept.</b> If Gemini answers a chat message with an image, it is saved too.</div>
+  </div>
+</div>
+<script src="marks.js"></script>
+</body>
+</html>

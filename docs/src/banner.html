@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="theme.css">
+<style>
+  #frame { width: 1280px; height: 440px; padding: 56px 64px; display: grid; grid-template-columns: 560px 1fr; gap: 40px; align-items: center; }
+  h1 { font-size: 56px; line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; }
+  h1 .plus { color: var(--faint); font-weight: 500; }
+  .lead { margin-top: 18px; font-size: 18px; line-height: 1.55; color: var(--muted); max-width: 520px; }
+  .lead b { color: var(--text); font-weight: 600; }
+  .chips { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .stage { position: relative; height: 100%; }
+  svg.wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .hub {
+    position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    padding: 18px 18px; border-radius: 22px; background: var(--card-2); box-shadow: var(--shadow); text-align: center; width: 176px;
+  }
+  .hub .k { font-size: 12px; letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase; }
+  .hub .v { margin-top: 6px; font-size: 15px; font-weight: 600; line-height: 1.35; }
+  .node { position: absolute; right: 0; width: 214px; padding: 16px 18px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
+  .node.gem { top: 0; }
+  .node.cdx { bottom: 0; }
+  .node .title { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 600; }
+  .node ul { list-style: none; padding: 0; margin-top: 12px; display: grid; gap: 7px; }
+  .node li { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted); }
+  .node.gem li .dot { background: var(--g2); box-shadow: 0 0 10px var(--g2); }
+  .node.cdx li .dot { background: var(--c1); box-shadow: 0 0 10px var(--c1); }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div class="glow" style="width:520px;height:420px;left:-140px;top:-180px;background:#3b5bd6"></div>
+  <div class="glow" style="width:460px;height:360px;right:-120px;bottom:-200px;background:#1aa585"></div>
+  <div class="glow" style="width:300px;height:260px;right:280px;top:-160px;background:#8b5fd8;opacity:.35"></div>
+  <div>
+    <h1><span class="grad-cdx">Codex</span> <span class="plus">+</span> <span class="grad-gem">Gemini</span><br>for Claude</h1>
+    <p class="lead">Two MCP servers and a side-bar panel. <b>Images, Veo video, music and 3D</b>, and a second opinion, from the subscriptions you already have. <b>No API keys.</b></p>
+    <div class="chips">
+      <span class="pill"><span class="dot" style="background:#4cc38a"></span>Model Context Protocol</span>
+      <span class="pill">Claude Code · Antigravity · VS Code</span>
+      <span class="pill">Windows · macOS · Linux</span>
+    </div>
+  </div>
+  <div class="stage">
+    <svg class="wires" viewBox="0 0 552 328" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="wg" x1="0" x2="1"><stop offset="0" stop-color="#8B7CF6" stop-opacity=".15"/><stop offset="1" stop-color="#8B7CF6"/></linearGradient>
+        <linearGradient id="wc" x1="0" x2="1"><stop offset="0" stop-color="#36C9A0" stop-opacity=".15"/><stop offset="1" stop-color="#36C9A0"/></linearGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="3"/></filter>
+      </defs>
+      <path d="M176 164 C 262 164, 252 80, 338 80" stroke="url(#wg)" stroke-width="8" fill="none" filter="url(#soft)" opacity=".7"/>
+      <path d="M176 164 C 262 164, 252 80, 338 80" stroke="url(#wg)" stroke-width="2" fill="none"/>
+      <path d="M176 164 C 262 164, 252 248, 338 248" stroke="url(#wc)" stroke-width="8" fill="none" filter="url(#soft)" opacity=".7"/>
+      <path d="M176 164 C 262 164, 252 248, 338 248" stroke="url(#wc)" stroke-width="2" fill="none"/>
+    </svg>
+    <div class="node gem">
+      <div class="title"><span data-mark="gemini" data-size="26"></span>Gemini</div>
+      <ul><li><span class="dot"></span>Nano Banana images</li><li><span class="dot"></span>Veo video</li><li><span class="dot"></span>Music</li><li><span class="dot"></span>Chat &amp; web research</li></ul>
+    </div>
+    <div class="hub"><div class="k">MCP · stdio</div><div class="v">Claude, Antigravity<br>or the panel</div></div>
+    <div class="node cdx">
+      <div class="title"><span data-mark="codex" data-size="26"></span>Codex</div>
+      <ul><li><span class="dot"></span>Images &amp; edits</li><li><span class="dot"></span>Video clips</li><li><span class="dot"></span>3D models (GLB)</li><li><span class="dot"></span>Code in your repo</li></ul>
+    </div>
+  </div>
+</div>
+<script src="marks.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+// The two original marks used in the panel and the docs (not the vendors' logos).
+window.MARK = {
+  gemini: (size = 24, id = 'g' + Math.random().toString(36).slice(2)) => `<svg class="spark" width="${size}" height="${size}" viewBox="0 0 24 24"><defs><linearGradient id="${id}" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4F8DF7"/><stop offset=".55" stop-color="#8B7CF6"/><stop offset="1" stop-color="#C98BEA"/></linearGradient></defs><path fill="url(#${id})" d="M12 2c.5 4.9 3.2 8.4 8.7 10-5.5 1.6-8.2 5.1-8.7 10-.5-4.9-3.2-8.4-8.7-10C8.8 10.4 11.5 6.9 12 2z"/></svg>`,
+  codex: (size = 24, id = 'c' + Math.random().toString(36).slice(2)) => `<svg class="ring" width="${size}" height="${size}" viewBox="0 0 24 24"><defs><linearGradient id="${id}" x1="4" y1="20" x2="20" y2="4" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#36C9A0"/><stop offset="1" stop-color="#5DB8F0"/></linearGradient></defs><path fill="url(#${id})" fill-rule="evenodd" d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18zm0 5.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z"/></svg>`,
+};
+document.querySelectorAll('[data-mark]').forEach((el) => { el.innerHTML = window.MARK[el.dataset.mark](+(el.dataset.size || 24)); });

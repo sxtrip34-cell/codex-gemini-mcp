@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="theme.css">
+<style>
+  #frame { width: 1280px; padding: 48px 48px 52px; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .col h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+  .col p { margin: 6px 0 16px; font-size: 13.5px; color: var(--muted); line-height: 1.5; min-height: 40px; }
+  .shot { border-radius: 22px; overflow: hidden; box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,0.02); background: #181818; }
+  iframe { display: block; width: 100%; height: 700px; border: 0; }
+  .n { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; margin-right: 8px; font-size: 12px; font-weight: 700; color: var(--ink); background: var(--gem); vertical-align: 2px; }
+  .col:nth-child(2) .n { background: var(--cdx); }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div class="glow" style="width:500px;height:400px;left:-160px;top:-200px;background:#3b5bd6;opacity:.4"></div>
+  <div class="glow" style="width:500px;height:400px;right:-160px;bottom:-220px;background:#1aa585;opacity:.35"></div>
+  <div class="row">
+    <div class="col"><h3><span class="n">1</span>Pick Gemini or Codex</h3><p>One panel next to your editor. Each provider keeps its own conversation.</p><div class="shot"><iframe src="panel-frame.html?scene=gemini"></iframe></div></div>
+    <div class="col"><h3><span class="n">2</span>Choose model and power</h3><p>Codex models and reasoning levels come straight from your Codex account.</p><div class="shot"><iframe src="panel-frame.html?scene=codex-power"></iframe></div></div>
+    <div class="col"><h3><span class="n">3</span>Just write</h3><p>It works out chat, image, video, music or 3D, and hands off what the other side does better.</p><div class="shot"><iframe src="panel-frame.html?scene=convo"></iframe></div></div>
+  </div>
+</div>
+</body>
+</html>

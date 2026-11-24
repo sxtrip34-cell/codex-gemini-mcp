@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="theme.css">
+<style>
+  #frame { width: 1280px; padding: 44px 48px 48px; }
+  h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .sub { margin-top: 6px; color: var(--muted); font-size: 15px; }
+  .grid { position: relative; margin-top: 34px; display: grid; grid-template-columns: 230px 290px 330px 1fr; gap: 44px; align-items: stretch; }
+  .grid > div:not(.lbl) { display: flex; flex-direction: column; }
+  .grid > div > .stack, .grid > div > .box { margin: auto 0; }
+  .colh { font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 12px; }
+  .stack { display: grid; gap: 14px; }
+  .box { position: relative; padding: 14px 16px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow); z-index: 1; }
+  .box .t { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15.5px; }
+  .box .d { margin-top: 6px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .box code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #c9d2e6; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 6px; }
+  .tools { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .tools span { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,0.06); color: #c9d2e6; }
+  .srv.gem { background: linear-gradient(160deg, #1c2340, var(--card) 60%); }
+  .srv.cdx { background: linear-gradient(160deg, #142c30, var(--card) 60%); }
+  .badge { margin-left: auto; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 999px; }
+  .badge.gem { color: #c8c2ff; background: rgba(139, 124, 246, 0.16); }
+  .badge.cdx { color: #9ff0d8; background: rgba(54, 201, 160, 0.16); }
+  .out { text-align: left; }
+  .out .files { margin-top: 10px; display: grid; gap: 6px; }
+  .out .files div { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #c9d2e6; }
+  .out .files i { width: 8px; height: 8px; border-radius: 2px; }
+  svg.wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 0; }
+  .lbl { position: absolute; font-size: 11px; color: var(--faint); letter-spacing: 0.08em; text-transform: uppercase; z-index: 2; background: var(--ink); padding: 2px 8px; border-radius: 999px; }
+  .ic { width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center; background: rgba(255,255,255,0.07); font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div class="glow" style="width:520px;height:400px;left:300px;top:-240px;background:#3b5bd6;opacity:.35"></div>
+  <div class="glow" style="width:520px;height:400px;left:340px;bottom:-260px;background:#1aa585;opacity:.3"></div>
+  <h2>How it fits together</h2>
+  <p class="sub">Everything runs on your machine. The servers drive tools you are already signed in to; nothing needs an API key.</p>
+  <div class="grid" id="grid">
+    <svg class="wires" id="wires"></svg>
+    <div>
+      <div class="colh">Where you work</div>
+      <div class="stack">
+        <div class="box" id="c1"><div class="t"><span class="ic">✳</span>Claude Code</div><div class="d">Calls the tools on its own when a task needs media.</div></div>
+        <div class="box" id="c2"><div class="t"><span class="ic">◆</span>Antigravity</div><div class="d">Same servers in <code>mcp_config.json</code>.</div></div>
+        <div class="box" id="c3"><div class="t"><span class="ic">▣</span>The panel</div><div class="d">VS Code · Antigravity · Cursor side bar.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="colh">MCP servers · this repo</div>
+      <div class="stack">
+        <div class="box srv gem" id="s1"><div class="t"><span data-mark="gemini" data-size="22"></span>gemini-mcp<span class="badge gem">NODE</span></div>
+          <div class="tools"><span>gemini_image</span><span>gemini_video</span><span>gemini_music</span><span>gemini_chat</span><span>gemini_ask</span></div></div>
+        <div class="box srv cdx" id="s2"><div class="t"><span data-mark="codex" data-size="22"></span>codex-mcp<span class="badge cdx">NODE</span></div>
+          <div class="tools"><span>generate_image</span><span>generate_video</span><span>generate_3d</span><span>codex</span><span>codex_reply</span></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="colh">What they drive · your sign-ins</div>
+      <div class="stack">
+        <div class="box" id="e1"><div class="t">Gemini web app <span class="badge gem">HEADLESS CHROME</span></div><div class="d">Nano Banana images, Veo video, music, chat. Own Chrome profile, no window.</div></div>
+        <div class="box" id="e2"><div class="t">Antigravity CLI <code>agy</code></div><div class="d">Gemini Flash for quick answers and web research.</div></div>
+        <div class="box" id="e3"><div class="t">Codex CLI <span class="badge cdx">CHATGPT SIGN-IN</span></div><div class="d">Built-in image model; drives <b>ffmpeg</b> for video and <b>Blender</b> for 3D.</div></div>
+      </div>
+    </div>
+    <div class="out">
+      <div class="colh">Comes back</div>
+      <div class="box" id="o1"><div class="t">Files in your project</div>
+        <div class="files"><div><i style="background:#8b7cf6"></i>hero.jpg</div><div><i style="background:#5db8f0"></i>loop.mp4</div><div><i style="background:#36c9a0"></i>chair.glb</div><div><i style="background:#c98bea"></i>track.mp3</div></div>
+        <div class="d" style="margin-top:10px">plus a preview, so the model can look before it uses an asset.</div></div>
+    </div>
+  </div>
+</div>
+<script src="marks.js"></script>
+<script>
+  // Draw soft connectors between boxes once the layout is known.
+  const grid = document.getElementById('grid');
+  const svg = document.getElementById('wires');
+  const g = grid.getBoundingClientRect();
+  const pt = (id, side) => {
+    const r = document.getElementById(id).getBoundingClientRect();
+    return { x: (side === 'r' ? r.right : r.left) - g.left, y: r.top + r.height / 2 - g.top };
+  };
+  const color = { gem: '#8B7CF6', cdx: '#36C9A0', neutral: '#7d89a6' };
+  let defs = '<defs><filter id="blur"><feGaussianBlur stdDeviation="2.5"/></filter></defs>';
+  let paths = '';
+  const link = (a, b, c) => {
+    const p = pt(a, 'r'), q = pt(b, 'l');
+    const mx = (p.x + q.x) / 2;
+    const d = `M${p.x} ${p.y} C ${mx} ${p.y}, ${mx} ${q.y}, ${q.x} ${q.y}`;
+    paths += `<path d="${d}" stroke="${c}" stroke-width="6" fill="none" opacity=".22" filter="url(#blur)"/><path d="${d}" stroke="${c}" stroke-width="1.6" fill="none" opacity=".8"/>`;
+  };
+  for (const c of ['c1', 'c2', 'c3']) { link(c, 's1', color.gem); link(c, 's2', color.cdx); }
+  link('s1', 'e1', color.gem); link('s1', 'e2', color.gem); link('s2', 'e3', color.cdx);
+  for (const e of ['e1', 'e2', 'e3']) link(e, 'o1', color.neutral);
+  svg.setAttribute('viewBox', `0 0 ${g.width} ${g.height}`);
+  svg.innerHTML = defs + paths;
+  // "MCP · stdio" label between the first two columns
+  const l = document.createElement('div');
+  l.className = 'lbl';
+  l.textContent = 'MCP · stdio';
+  grid.appendChild(l);
+  const s1 = document.getElementById('s1').getBoundingClientRect();
+  l.style.left = (s1.left - g.left - 44 / 2 - 44) + 'px';
+  l.style.top = (s1.bottom - g.top + 2) + 'px';
+</script>
+</body>
+</html>

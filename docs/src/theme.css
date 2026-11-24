@@ -1,0 +1,31 @@
+/* Shared look for the README graphics: ink background, soft glows, no hairlines. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+:root {
+  --ink: #0a0f1c;
+  --ink-2: #111829;
+  --card: #151d31;
+  --card-2: #1b2540;
+  --text: #e8ecf6;
+  --muted: #9aa5bf;
+  --faint: #6c7893;
+  --g1: #4f8df7; --g2: #8b7cf6; --g3: #c98bea;   /* Gemini */
+  --c1: #36c9a0; --c2: #45bfc8; --c3: #5db8f0;   /* Codex */
+  --gem: linear-gradient(135deg, var(--g1), var(--g2) 55%, var(--g3));
+  --cdx: linear-gradient(135deg, var(--c1), var(--c2) 55%, var(--c3));
+  --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8), 0 6px 18px -8px rgba(0, 0, 0, 0.5);
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { background: transparent; }
+body { font-family: Inter, 'Segoe UI', -apple-system, Helvetica, Arial, sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+#frame {
+  position: relative; overflow: hidden; border-radius: 28px; background: var(--ink);
+  isolation: isolate;
+}
+.glow { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.55; z-index: -1; }
+.mono { font-family: 'JetBrains Mono', Consolas, monospace; }
+.spark, .ring { display: inline-block; flex: none; }
+.card { background: var(--card); border-radius: 20px; box-shadow: var(--shadow); }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); color: var(--muted); font-size: 14px; font-weight: 500; }
+.dot { width: 7px; height: 7px; border-radius: 50%; }
+.grad-gem { background: var(--gem); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-cdx { background: var(--cdx); -webkit-background-clip: text; background-clip: text; color: transparent; }

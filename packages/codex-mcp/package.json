@@ -1,0 +1,22 @@
+{
+  "name": "@codex-gemini-mcp/codex-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MCP server that drives the local OpenAI Codex CLI: image, video and 3D generation plus general Codex tasks.",
+  "license": "MIT",
+  "type": "module",
+  "main": "server.mjs",
+  "bin": {
+    "codex-mcp": "server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "smoke": "node test/smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2"
+  }
+}

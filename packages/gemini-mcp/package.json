@@ -1,0 +1,24 @@
+{
+  "name": "@codex-gemini-mcp/gemini-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MCP server for Google Gemini on a Google AI subscription, no API key: text through the Antigravity CLI, Nano Banana images, Veo videos and music through the Gemini web app in a headless Chrome profile.",
+  "license": "MIT",
+  "type": "module",
+  "main": "server.mjs",
+  "bin": {
+    "gemini-mcp": "server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "signin": "node scripts/signin.mjs",
+    "smoke": "node test/smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "playwright-core": "1.65.1"
+  }
+}

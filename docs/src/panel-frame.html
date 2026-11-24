@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<!-- The real panel (packages/vscode-panel/media) with a mocked VS Code API, for screenshots and the demo GIF.
+     ?scene=gemini | codex-power | convo | blank -->
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../packages/vscode-panel/media/panel.css">
+<style>
+  html {
+    --vscode-foreground: #cccccc; --vscode-descriptionForeground: #9d9d9d; --vscode-sideBar-background: #181818;
+    --vscode-errorForeground: #f48771; --vscode-font-family: Inter, 'Segoe UI', sans-serif; --vscode-font-size: 13px;
+    --vscode-editor-font-family: 'JetBrains Mono', Consolas, monospace; --vscode-textLink-foreground: #4daafc;
+  }
+  /* keep the whole short conversation in view for the screenshot */
+  body.scene-convo .media img { max-height: 280px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  const scene = new URLSearchParams(location.search).get('scene') || 'gemini';
+  document.body.classList.add(`scene-${scene}`);
+  window.PANEL_OUTPUT = 'my-app/ai-output';
+  const send = (m, delay = 10) => setTimeout(() => window.postMessage(m, '*'), delay);
+  window.acquireVsCodeApi = () => ({
+    getState: () => (scene === 'codex-power' ? { provider: 'codex' } : null),
+    setState: () => {},
+    postMessage: (m) => {
+      if (m.type !== 'ready') return;
+      send({ type: 'config', provider: 'gemini', models: [
+        { id: 'neon', label: 'Neon', desc: 'Deeper analysis', power: ['low', 'medium', 'high'] },
+        { id: 'hydrogen', label: 'Hydrogen', desc: 'Everyday help', power: [] },
+        { id: 'auto', label: 'Auto', desc: 'Adapts to the request', power: [] },
+        { id: 'flash', label: 'Flash', desc: 'Fast, reads this workspace', power: ['low', 'medium', 'high'] },
+      ] });
+      send({ type: 'config', provider: 'codex', defaultModel: 'gpt-6.2-sol', defaultPower: 'high', models: [
+        { id: 'gpt-6.2-sol', label: 'GPT-6.2-Sol', desc: 'Default', power: ['low', 'medium', 'high', 'xhigh', 'max', 'ultra'] },
+        { id: 'gpt-6.2-astra', label: 'GPT-6.2-Astra', desc: '', power: ['low', 'medium', 'high', 'xhigh', 'max', 'ultra'] },
+        { id: 'gpt-6-luna', label: 'GPT-6-Luna', desc: '', power: ['low', 'medium', 'high', 'xhigh', 'max'] },
+      ] });
+      send({ type: 'status', provider: 'gemini', state: 'ok', text: 'Google · signed in' });
+      send({ type: 'status', provider: 'codex', state: 'ok', text: 'ChatGPT · signed in' });
+      window.dispatchEvent(new Event('panel-ready'));
+    },
+  });
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const say = (m) => window.postMessage(m, '*');
+  function ask(text) {
+    const input = document.getElementById('input');
+    input.value = text;
+    input.dispatchEvent(new Event('input'));
+    document.getElementById('send').click();
+  }
+  async function convo() {
+    ask('dikey story görseli yap: origami turna');
+    await wait(60); say({ type: 'routed', provider: 'gemini', tool: 'image', aspect: '9:16' });
+    await wait(60); say({ type: 'reply', provider: 'gemini', by: 'gemini', text: '', files: [{ path: 'my-app/ai-output/origami-turna.jpg', name: 'origami-turna.jpg', kind: 'image', uri: media('crane.jpg') }] });
+    await wait(60); ask('make a low-poly vintage camera as GLB');
+    await wait(60); say({ type: 'routed', provider: 'gemini', tool: '3d', aspect: null, via: 'codex' });
+    await wait(60); say({ type: 'busy', provider: 'gemini', busy: true, activity: 'Building a 3D model with Codex… (2m 10s)' });
+  }
+  const media = (name) => new URL(`media/${name}`, location.href).href;
+  window.addEventListener('panel-ready', () => setTimeout(() => {
+    if (scene === 'codex-power') document.getElementById('power').click();
+    if (scene === 'convo') convo();
+  }, 60));
+</script>
+<script src="../../packages/vscode-panel/media/panel.js"></script>
+</body>
+</html>

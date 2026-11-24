@@ -1,0 +1,125 @@
+{
+  "name": "codex-gemini-panel",
+  "displayName": "Codex · Gemini",
+  "description": "One side-bar panel for Codex and Gemini, backed by the local codex-mcp and gemini-mcp servers. Pick the provider, model and power; the panel works out chat, image, video, music or 3D by itself.",
+  "version": "1.0.0",
+  "publisher": "codex-gemini-mcp",
+  "license": "MIT",
+  "private": true,
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "AI",
+    "Chat"
+  ],
+  "keywords": [
+    "codex",
+    "gemini",
+    "mcp",
+    "nano banana",
+    "veo"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [],
+  "scripts": {
+    "package": "node -e \"require('fs').mkdirSync('../../dist',{recursive:true})\" && npx -y @vscode/vsce@3.9.2 package --no-dependencies -o ../../dist/codex-gemini-panel.vsix"
+  },
+  "contributes": {
+    "viewsContainers": {
+      "secondarySidebar": [
+        {
+          "id": "codexGeminiContainer",
+          "title": "Codex · Gemini",
+          "icon": "media/icon-mono.svg"
+        }
+      ]
+    },
+    "views": {
+      "codexGeminiContainer": [
+        {
+          "id": "codexGemini.chat",
+          "type": "webview",
+          "name": "Codex · Gemini"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "codexGemini.open",
+        "title": "Open Codex · Gemini",
+        "category": "Codex · Gemini",
+        "icon": "media/icon.svg"
+      },
+      {
+        "command": "codexGemini.newChat",
+        "title": "New Chat",
+        "category": "Codex · Gemini",
+        "icon": "$(add)"
+      },
+      {
+        "command": "codexGemini.signIn",
+        "title": "Sign In to Gemini (opens a window once)",
+        "category": "Codex · Gemini"
+      },
+      {
+        "command": "codexGemini.openOutput",
+        "title": "Open Output Folder",
+        "category": "Codex · Gemini",
+        "icon": "$(folder-opened)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "codexGemini.open",
+          "group": "navigation@100"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "codexGemini.newChat",
+          "when": "view == codexGemini.chat",
+          "group": "navigation@1"
+        },
+        {
+          "command": "codexGemini.openOutput",
+          "when": "view == codexGemini.chat",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Codex · Gemini",
+      "properties": {
+        "codexGemini.geminiServerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path of gemini-mcp's server.mjs. Empty: found automatically (install.json written by the installer, or this repository)."
+        },
+        "codexGemini.codexServerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path of codex-mcp's server.mjs. Empty: found automatically."
+        },
+        "codexGemini.nodePath": {
+          "type": "string",
+          "default": "",
+          "description": "Node.js executable. Empty: node on PATH."
+        },
+        "codexGemini.outputDir": {
+          "type": "string",
+          "default": "",
+          "description": "Folder for generated files. Empty: <workspace>/ai-output, or ~/Pictures/AI without a workspace."
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sxtrip34-cell/codex-gemini-mcp",
+    "directory": "packages/vscode-panel"
+  },
+  "homepage": "https://github.com/sxtrip34-cell/codex-gemini-mcp#readme"
+}
